@@ -35,6 +35,7 @@ class InvestmentCalculator
 double CalculateNextTotal(double InitialCapital, double InterestRate, double YearlyContribution);
 
 void PrintInvestmentLabelRow();
+void PrintCumulativeLabelRow();
 
 void PrintInvestmentInformation(int year, double InitialCapital, double InterestGrowth, double Contribution);
 

@@ -80,8 +80,8 @@ void InvestmentCalculator::PrintInitialInvestment()
  */
 void InvestmentCalculator::PrintInvestmentCumulativeRow(double Capital, double InterestGrowth, double Contribution)
 {
-  printf("--------------------------------------------------------");
-  PrintInvestmentLabelRow();
+  printf("-----------------Cumulative------------------------------\n");
+  PrintCumulativeLabelRow();
   printf("%5.2f || %5.2f || %5.2f || %5.2f\n",Capital,InterestGrowth+Contribution,InterestGrowth,Contribution);
 }
 
@@ -166,13 +166,30 @@ double CalculateNextTotal(double InitialCapital, double InterestRate, double Yea
   return InterestRate * InitialCapital + YearlyContribution;
 }
 
+/*! \brief
+ *   This function prints the label row at the top of the predictions.
+ */
 void PrintInvestmentLabelRow()
 {
   printf("Year |   Total  | Growth | Interest | Contribution\n");
 }
+
+/*! \brief
+ *   This function prints the information at each iteration of the
+ *   investment prediction.
+ */
 void PrintInvestmentInformation(int year, double Total, double InterestGrowth, double Contribution)
 {
   printf("%5i: %5.2f || %5.2f || %5.2f || %5.2f\n",year,Total,InterestGrowth+Contribution,InterestGrowth,Contribution);
+}
+
+/*! \brief
+ *   This function prints the label row for the cumulative entry at the
+ *   bottom.
+ */
+void PrintCumulativeLabelRow()
+{
+  printf("   Total  | Growth | Interest | Contribution\n");
 }
 
 
