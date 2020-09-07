@@ -192,6 +192,12 @@ void PrintCumulativeLabelRow()
   printf("   Total  | Growth | Interest | Contribution\n");
 }
 
+/* This function prints useful information in the console window */
+void PrintHelp()
+{
+  printf("You can use this executable two ways:\n  1. Enter nothing and it will try to pull information from Data.txt\n  2. Enter in four arguments (Initial capital, interest, yearly contribution, years to predict)");
+}
+
 
 int main(int argc, char* argv[])
 {
@@ -220,9 +226,18 @@ int main(int argc, char* argv[])
       printf("Number overflow: std::out_of_range thrown");
     }
   }
-  //Client gave location to a data file
+  // Check if client gave data file, or if they're asking for help.
   else if (argc == 1)
   {
+    std::string input = argv[1];
+    /* Check for help request */
+    if ( input == "help" )
+    {
+    }
+    /* Check for text file */
+    else if ()
+    {
+    }
   }
   else { return 1; }
 
