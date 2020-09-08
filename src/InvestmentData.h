@@ -17,7 +17,7 @@ class InvestmentData
       double AnnualContributions;
 
       YearlyData();
-      YearlyData(double Total, double Growth, double Interest, double Contribution);
+      YearlyData(double Total, double Interest, double Contribution);
     };
 
     YearlyData* Portfolio_;
@@ -28,6 +28,9 @@ class InvestmentData
     void Resize();
   public:
     InvestmentData();
-    void Append(double Total, double Growth, double InterestEarnings, double Contributions);
+    InvestmentData(int StartYear);
+    ~InvestmentData();
+    void Append(double Total, double InterestEarnings, double Contributions);
     void Get(int StartIndex=0, int EndIndex=0);
+    void PrintContents();
 };

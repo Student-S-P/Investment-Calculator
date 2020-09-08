@@ -3,3 +3,9 @@ obj/InvestmentCalculator.o
 bin/InvestmentPredictor.exe
 src/.InvestmentCalculator.h.swp
 src/.InvestmentCalculator.cpp.swp
+src/.InvestmentData.cpp.swp
+*.swp
+*.o
+*.o
+obj/InvestmentData.o
+*.o
