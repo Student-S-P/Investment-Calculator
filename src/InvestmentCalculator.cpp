@@ -195,7 +195,7 @@ void PrintCumulativeLabelRow()
 /* This function prints useful information in the console window */
 void PrintHelp()
 {
-  printf("You can use this executable two ways:\n  1. Enter nothing and it will try to pull information from Data.txt\n  2. Enter in four arguments (Initial capital, interest, yearly contribution, years to predict)");
+  printf("You can use this executable two ways:\n  1. Enter nothing and it will try to pull information from Data.txt\n  2. Enter in four arguments (Initial capital, interest, yearly contribution, years to predict)\n");
 }
 
 
@@ -227,19 +227,24 @@ int main(int argc, char* argv[])
     }
   }
   // Check if client gave data file, or if they're asking for help.
-  else if (argc == 1)
+  else if (argc == 2)
   {
-    std::string input = argv[1];
+    std::string arg1(argv[1]);
     /* Check for help request */
-    if ( input == "help" )
+    if ( arg1 == "help" )
     {
+      PrintHelp();
+      return 1;
     }
     /* Check for text file */
-    else if ()
+    else
     {
     }
   }
-  else { return 1; }
+  //User gave only program name as an argument.
+  else if (argc == 1)
+  {
+  } else { return 1; }
 
   InvestmentCalculator ic = InvestmentCalculator(InitialMoney, Interest, Contribution);
   ic.PredictGrowth(Years);
