@@ -10,3 +10,4 @@ src/.InvestmentData.cpp.swp
 obj/InvestmentData.o
 *.o
 *.o
+obj/InvestmentData.o
