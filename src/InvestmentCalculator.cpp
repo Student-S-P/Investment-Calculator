@@ -51,9 +51,11 @@ double InvestmentCalculator::PredictGrowth(unsigned YearsToPredict)
   double CumulativeInterest = 0.0;
   double CumulativeContribution = 0.0;
 
+  /* Now handled by printing history from the data object
   //Display information.
   PrintInitialInvestment();
   PrintInvestmentLabelRow();
+  */
   //Calculate growth.
   while(current_year <= YearsToPredict)
   {
@@ -66,12 +68,17 @@ double InvestmentCalculator::PredictGrowth(unsigned YearsToPredict)
     //Add information to history.
     AddToHistory(Total, InterestGrowth, YearlyContribution_);
 
+    //Now handled by printing history from the data object
+    /*
     PrintInvestmentInformation(current_year, Total, InterestGrowth, YearlyContribution_);
+    */
 
     Capital = Total;
     ++current_year;
   }
+  /* Not yet, but will soon be handled by the data object
   PrintInvestmentCumulativeRow(Capital, CumulativeInterest, CumulativeContribution);
+  */
   return Capital;
 }
 

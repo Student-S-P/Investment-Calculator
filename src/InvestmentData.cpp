@@ -83,13 +83,14 @@ void InvestmentData::Resize()
   }
 }
 
-/* Print all the arrays as a series of rows. */
+/* Print all the arrays as a series of rows. NOTE: IT IGNORES EMPTY SPACES
+ * AT THE END! */
 void InvestmentData::PrintContents()
 {
-  for(int i=0; i<PortfolioSize_; ++i)
+  for(int i=0; i<CurrentIndex_; ++i)
   {
     YearlyData abrv = Portfolio_[i];
-    printf("%5.2f || %5.2f || %5.2f || %5.2f\n",abrv.AnnualTotal,abrv.AnnualInterestEarnings+abrv.AnnualContributions,abrv.AnnualInterestEarnings,abrv.AnnualContributions);
+    printf("%5i : %5.2f || %5.2f || %5.2f || %5.2f\n",StartYear_+i,abrv.AnnualTotal,abrv.AnnualInterestEarnings+abrv.AnnualContributions,abrv.AnnualInterestEarnings,abrv.AnnualContributions);
   }
 }
 

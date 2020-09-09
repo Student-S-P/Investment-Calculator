@@ -14,7 +14,6 @@
 #include "../json/json.h" //Needed to parse Data.json
 #include "../json/value.h" //Needed to parse Data.json
 #include <fstream>  //Needed to read Data.json
-#include <iostream> //cout for testing json parse
 
 void TestCalculator(double Capital, double Interest, double Contribution, double Years)
 {
@@ -108,15 +107,10 @@ int main(int argc, char* argv[])
     std::ifstream input_file("Input.json", std::ifstream::binary);
     input_file >> inputs;
 
-    std::cout << inputs;
-    /*
-    InitialMoney == inputs["Capital"].asDouble();
-    Interest == inputs["Interest"].asDouble();
-    Contribution == inputs["Contribution"].asDouble();
-    Years == inputs["Years"].asInt();
-    */
-
-    return 1;
+    InitialMoney = inputs["Capital"].asDouble();
+    Interest = inputs["Interest"].asDouble();
+    Contribution = inputs["Contribution"].asDouble();
+    Years = inputs["Years"].asInt();
   } 
   else //Do nothing!
   {
