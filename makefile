@@ -6,6 +6,7 @@ CPPFLAGS = -g -Wall -Werror -Wextra -O2
 SRC_DIR = ./src
 BUILD_DIR = ./obj
 BIN_DIR = ./bin
+LIB_DIR = ./json
 
 #debug = yes
 
