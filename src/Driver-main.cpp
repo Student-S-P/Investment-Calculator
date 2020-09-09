@@ -8,12 +8,17 @@
  */
 /**********************************************************************/
 #include "InvestmentCalculator.h"
-#include "InvestmentData.h"
 #include <string> //For stod
 #include <cstdio> //For printf
 #include <stdexcept> //For exception handling when given bad input
 
-int main(int argc, char* argv[])
+void TestCalculator(double Capital, double Interest, double Contribution, double Years)
+{
+  InvestmentCalculator ic = InvestmentCalculator(Capital, Interest, Contribution);
+  ic.PredictGrowth(Years);
+}
+
+void TestData()
 {
   int StartingYear = 38;
   double StartMoney = 16000.00;
@@ -23,9 +28,30 @@ int main(int argc, char* argv[])
   InvestmentData id = InvestmentData(StartingYear);
   id.Append(StartMoney,InterestGain,Addition);
   id.PrintContents();
-  return 1;
+}
 
-  /**************ALL BELOW IGNORED NOW************/
+void TestHistory()
+{
+  double InitialMoney = 16000.00;
+  double Interest = 1.07;
+  double Contribution = 5000.00;
+  int Years = 38;
+
+  InvestmentCalculator ic = InvestmentCalculator(InitialMoney, Interest, Contribution);
+  ic.PredictGrowth(Years);
+  ic.PrintHistory();
+}
+
+int main(int argc, char* argv[])
+{
+  /*
+  TestData();
+  return 1;
+  */
+
+  TestHistory();
+  return 1;
+  /**************BELOW IS DEFAULT FUNCTIONALITY************/
 
   //If no arguments are given use the default here.
   double InitialMoney = 16000.00;
@@ -77,12 +103,3 @@ int main(int argc, char* argv[])
   return 1;
 }
 
-void TestCalculator(double Capital, double Interest, double Contribution, double Years)
-{
-  InvestmentCalculator ic = InvestmentCalculator(Capital, Interest, Contribution);
-  ic.PredictGrowth(Years);
-}
-
-void TestData()
-{
-}

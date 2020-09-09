@@ -14,7 +14,7 @@
  * \param 
  */
 InvestmentData::YearlyData::YearlyData() :
-  AnnualTotal(0), AnnualGrowth(0), AnnualInterestEarnings(0), AnnualContributions(0)
+  AnnualTotal(0), AnnualInterestEarnings(0), AnnualContributions(0)
 {
 }
 /*! \brief
@@ -22,7 +22,7 @@ InvestmentData::YearlyData::YearlyData() :
  * \param 
  */
 InvestmentData::YearlyData::YearlyData(double Total, double Interest, double Contribution) :
-  AnnualTotal(Total), AnnualGrowth(Interest+Contribution), AnnualInterestEarnings(Interest), AnnualContributions(Contribution)
+  AnnualTotal(Total), AnnualInterestEarnings(Interest), AnnualContributions(Contribution)
 {
 }
 
@@ -72,7 +72,6 @@ void InvestmentData::Resize()
     for (int i=0; i<PortfolioSize_; ++i)
     {
       replacement[i].AnnualTotal = Portfolio_[i].AnnualTotal;
-      replacement[i].AnnualGrowth = Portfolio_[i].AnnualGrowth;
       replacement[i].AnnualInterestEarnings = Portfolio_[i].AnnualInterestEarnings;
       replacement[i].AnnualContributions = Portfolio_[i].AnnualContributions;
     }
@@ -90,6 +89,8 @@ void InvestmentData::PrintContents()
   for(int i=0; i<PortfolioSize_; ++i)
   {
     YearlyData abrv = Portfolio_[i];
-    printf("%5.2f || %5.2f || %5.2f || %5.2f\n",abrv.AnnualTotal,abrv.AnnualGrowth,abrv.AnnualInterestEarnings,abrv.AnnualContributions);
+    printf("%5.2f || %5.2f || %5.2f || %5.2f\n",abrv.AnnualTotal,abrv.AnnualInterestEarnings+abrv.AnnualContributions,abrv.AnnualInterestEarnings,abrv.AnnualContributions);
   }
 }
+
+

@@ -12,7 +12,6 @@ class InvestmentData
     struct YearlyData
     {
       double AnnualTotal;
-      double AnnualGrowth;
       double AnnualInterestEarnings;
       double AnnualContributions;
 

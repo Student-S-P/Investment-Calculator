@@ -10,6 +10,7 @@
 #include "InvestmentCalculator.h"
 #include <cstdio> //For printf
 #include <stdexcept> //For exception handling when given bad input
+#include <cassert> //for assert on destructor
 
   /*! \brief
    * Constructs the object and initializes its fields.
@@ -22,8 +23,18 @@
    * by interest the year it is added.
    */
 InvestmentCalculator::InvestmentCalculator(double InitialCapital, double InterestRate, double YearlyContribution) :
-    InitialCapital_(InitialCapital), InterestRate_(InterestRate), YearlyContribution_(YearlyContribution)
+    InitialCapital_(InitialCapital), InterestRate_(InterestRate), YearlyContribution_(YearlyContribution), History_(nullptr)
 {
+}
+
+InvestmentCalculator::~InvestmentCalculator()
+{
+  if (History_ != nullptr)
+  {
+    delete History_;
+    History_ = nullptr;
+    assert(!History_);
+  }
 }
 
 /*! \brief
@@ -40,8 +51,10 @@ double InvestmentCalculator::PredictGrowth(unsigned YearsToPredict)
   double CumulativeInterest = 0.0;
   double CumulativeContribution = 0.0;
 
+  //Display information.
   PrintInitialInvestment();
   PrintInvestmentLabelRow();
+  //Calculate growth.
   while(current_year <= YearsToPredict)
   {
     double Total = CalculateNextTotal(Capital, InterestRate_, YearlyContribution_);
@@ -50,6 +63,8 @@ double InvestmentCalculator::PredictGrowth(unsigned YearsToPredict)
 
     CumulativeInterest += InterestGrowth;
     CumulativeContribution += YearlyContribution_;
+    //Add information to history.
+    AddToHistory(Total, InterestGrowth, YearlyContribution_);
 
     PrintInvestmentInformation(current_year, Total, InterestGrowth, YearlyContribution_);
 
@@ -58,6 +73,15 @@ double InvestmentCalculator::PredictGrowth(unsigned YearsToPredict)
   }
   PrintInvestmentCumulativeRow(Capital, CumulativeInterest, CumulativeContribution);
   return Capital;
+}
+
+void InvestmentCalculator::AddToHistory(double Capital, double Interest, double Contribution)
+{
+  if (History_ == nullptr)
+  {
+    History_ = new InvestmentData();
+  }
+  History_->Append(Capital, Interest, Contribution);
 }
 
 /*! \brief
@@ -147,6 +171,12 @@ double InvestmentCalculator::GetInterestRate()
 double InvestmentCalculator::GetYearlyContribution()
 {
   return YearlyContribution_;
+}
+
+/* Prints contents from data object */
+void InvestmentCalculator::PrintHistory()
+{
+  History_->PrintContents();
 }
 
 /*! \brief
