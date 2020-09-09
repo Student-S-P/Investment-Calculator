@@ -8,11 +8,14 @@ BUILD_DIR = ./obj
 BIN_DIR = ./bin
 LIB_DIR = ./json
 
+DIRS := $(SRC_DIR) $(LIB_DIR)
+find_files = $(wildcard $(dir)/*.cpp)
+
 #debug = yes
 
 PROG = $(BIN_DIR)/InvestmentPredictor.exe
 
-SRC_LIST := $(wildcard $(SRC_DIR)/*.cpp)
+SRC_LIST := $(foreach dir, $(DIRS),$(find_files))
 OBJ_LIST = $(SRC_LIST:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
 
 #OBJ_LIST = $(BUILD_DIR)/$(notdir $(SRC_LIST:%.cpp=%.o))
