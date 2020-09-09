@@ -11,6 +11,8 @@
 #include <string> //For stod
 #include <cstdio> //For printf
 #include <stdexcept> //For exception handling when given bad input
+#include <jsoncpp/json/json.h> //Needed to parse Data.json
+#include <fstream>  //Needed to read Data.json
 
 void TestCalculator(double Capital, double Interest, double Contribution, double Years)
 {
@@ -53,13 +55,12 @@ int main(int argc, char* argv[])
   return 1;
   /**************BELOW IS DEFAULT FUNCTIONALITY************/
 
-  //If no arguments are given use the default here.
-  double InitialMoney = 16000.00;
-  double Interest = 1.07;
-  double Contribution = 5000.00;
-  int Years = 38;
+  double initialmoney = 0.00;
+  double interest = 0.00;
+  double contribution = 0.00;
+  int years = 0;
 
-  //Client gave command line arguments.
+  //Client gave inputs for each variable.
   if (argc == 5 )
   {
     try
@@ -86,20 +87,29 @@ int main(int argc, char* argv[])
     if ( arg1 == "help" )
     {
       PrintHelp();
-      return 1;
     }
     /* Check for text file */
     else
     {
     }
+    return 1;
   }
   //User gave only program name as an argument.
+  // Check for Input.json
   else if (argc == 1)
   {
-  } else { return 1; }
+    Json::Value inputs;
+    std::ifstream input_file("Input.json", std::ifstream::binary);
+    input_file >> inputs;
 
-  InvestmentCalculator ic = InvestmentCalculator(InitialMoney, Interest, Contribution);
-  ic.PredictGrowth(Years);
-  return 1;
+    InitialMoney << input_file["Capital"];
+    Interest << input_file["Interest"];
+    Contribution << input_file["Contribution"];
+    Years << input_file["Years"];
+
+    InvestmentCalculator ic = InvestmentCalculator(InitialMoney, Interest, Contribution);
+    ic.PredictGrowth(Years);
+    return 1;
+  } else { return 1; }
 }
 
