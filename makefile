@@ -16,7 +16,7 @@ find_files = $(wildcard $(dir)/*.cpp)
 PROG = $(BIN_DIR)/InvestmentPredictor.exe
 
 SRC_LIST := $(foreach dir, $(DIRS),$(find_files))
-OBJ_LIST = $(SRC_LIST:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
+OBJ_LIST = $(warning reading OBJ_LIST)$(SRC_LIST:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
 
 #OBJ_LIST = $(BUILD_DIR)/$(notdir $(SRC_LIST:%.cpp=%.o))
 #OBJ_LIST = $(addprefix $(BUILD_DIR)/,$(notdir $(SRC_LIST:%.cpp=%.o)))
