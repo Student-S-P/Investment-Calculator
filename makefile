@@ -10,20 +10,29 @@ LIB_DIR = ./json
 DIRS := $(SRC_DIR) $(LIB_DIR)
 find_files = $(wildcard $(dir)/*.cpp)
 
-#debug = yes
+debug ?= no
+
+#BRIEF: This function takes a directory and the expansion of its .cpp elements
+# and then fills out a list of .cpp source items and creates a matching .o
+# list.
+define func
+$(eval
+SRC_LIST += $(2)
+OBJ_LIST += $(2:$(1)/%.cpp=$(BUILD_DIR)/%.o)
+)
+endef
 
 PROG = $(BIN_DIR)/InvestmentPredictor.exe
 
-SRC_LIST := $(foreach dir, $(DIRS),$(find_files))
-OBJ_LIST = $(warning reading OBJ_LIST)$(SRC_LIST:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
+$(foreach dir,$(DIRS),$(call func,$(dir),$(wildcard $(dir)/*.cpp)))
 
 ifeq ($(debug),yes)
-$(info SRC_DIR=$(SRC_DIR))
-$(info BIN_DIR=$(BIN_DIR))
-$(info BUILD_DIR=$(BUILD_DIR))
+$(warning SRC_DIR=$(SRC_DIR))
+$(warning BIN_DIR=$(BIN_DIR))
+$(warning BUILD_DIR=$(BUILD_DIR))
 
-$(info SRC_LIST=$(SRC_LIST))
-$(info OBJ_LIST=$(OBJ_LIST))
+$(warning SRC_LIST=$(SRC_LIST))
+$(warning OBJ_LIST=$(OBJ_LIST))
 endif
 
 all : $(PROG)
@@ -34,6 +43,11 @@ $(PROG) : $(OBJ_LIST)
 	$(LINK.cc) $^ -o $@
 
 $(BUILD_DIR)/%.o : $(SRC_DIR)/%.cpp
+	@echo Building $@ because: $^
+	@ [ -d $(@D) ] || mkdir -p $(@D)
+	$(COMPILE.cc) $^ -o $@
+
+$(BUILD_DIR)/%.o : $(LIB_DIR)/%.cpp
 	@echo Building $@ because: $^
 	@ [ -d $(@D) ] || mkdir -p $(@D)
 	$(COMPILE.cc) $^ -o $@
