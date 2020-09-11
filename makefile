@@ -1,7 +1,6 @@
 #MAKEFILE IS REAL
 
 CPPFLAGS = -g -Wall -Werror -Wextra -O2
-#OBJS = main.o market.o pi_factory.o pi_product.o pi_setup.o
 
 SRC_DIR = ./src
 BUILD_DIR = ./obj
@@ -17,9 +16,6 @@ PROG = $(BIN_DIR)/InvestmentPredictor.exe
 
 SRC_LIST := $(foreach dir, $(DIRS),$(find_files))
 OBJ_LIST = $(warning reading OBJ_LIST)$(SRC_LIST:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
-
-#OBJ_LIST = $(BUILD_DIR)/$(notdir $(SRC_LIST:%.cpp=%.o))
-#OBJ_LIST = $(addprefix $(BUILD_DIR)/,$(notdir $(SRC_LIST:%.cpp=%.o)))
 
 ifeq ($(debug),yes)
 $(info SRC_DIR=$(SRC_DIR))
