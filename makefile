@@ -1,4 +1,6 @@
-#MAKEFILE IS REAL
+#This makefile builds .cpp projects using .cpp libraries.
+# It expects a src folder to exist, and creates object and binary
+# directories. Bin is where the executable ends up.
 
 CPPFLAGS = -g -Wall -Werror -Wextra -O2
 
@@ -14,7 +16,10 @@ debug ?= no
 
 #BRIEF: This function takes a directory and the expansion of its .cpp elements
 # and then fills out a list of .cpp source items and creates a matching .o
-# list.
+# list. Eval is needed to grab the values rather than the references to
+# them.
+# (1) is a directory input
+# (2) is an expanded list of the .cpp items in each directory in (1)
 define func
 $(eval
 SRC_LIST += $(2)
