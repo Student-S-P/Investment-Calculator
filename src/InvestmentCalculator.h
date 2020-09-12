@@ -37,6 +37,7 @@ class InvestmentCalculator
     double GetYearlyContribution();
 
     void PrintHistory();
+    void PrintCumulativeHistory();
 };
 
 double CalculateNextTotal(double InitialCapital, double InterestRate, double YearlyContribution);

@@ -48,14 +48,7 @@ double InvestmentCalculator::PredictGrowth(unsigned YearsToPredict)
 {
   unsigned current_year = 1;
   double Capital = InitialCapital_;
-  double CumulativeInterest = 0.0;
-  double CumulativeContribution = 0.0;
 
-  /* Now handled by printing history from the data object
-  //Display information.
-  PrintInitialInvestment();
-  PrintInvestmentLabelRow();
-  */
   //Calculate growth.
   while(current_year <= YearsToPredict)
   {
@@ -63,25 +56,20 @@ double InvestmentCalculator::PredictGrowth(unsigned YearsToPredict)
     double Growth = Total - Capital;
     double InterestGrowth = Growth - YearlyContribution_;
 
-    CumulativeInterest += InterestGrowth;
-    CumulativeContribution += YearlyContribution_;
     //Add information to history.
     AddToHistory(Total, InterestGrowth, YearlyContribution_);
-
-    //Now handled by printing history from the data object
-    /*
-    PrintInvestmentInformation(current_year, Total, InterestGrowth, YearlyContribution_);
-    */
 
     Capital = Total;
     ++current_year;
   }
-  /* Not yet, but will soon be handled by the data object
-  PrintInvestmentCumulativeRow(Capital, CumulativeInterest, CumulativeContribution);
-  */
+
   return Capital;
 }
 
+/*! \brief
+ * Adds one year's worth of history to the calculator's data object.
+ * 
+ */
 void InvestmentCalculator::AddToHistory(double Capital, double Interest, double Contribution)
 {
   if (History_ == nullptr)
@@ -180,10 +168,20 @@ double InvestmentCalculator::GetYearlyContribution()
   return YearlyContribution_;
 }
 
-/* Prints contents from data object */
+/* Prints contents from data object 
+ * Can break if History_ is nullptr
+ */
 void InvestmentCalculator::PrintHistory()
 {
+  PrintInvestmentLabelRow();
   History_->PrintContents();
+}
+
+/* Gets the cumulative information from History. */
+void InvestmentCalculator::PrintCumulativeHistory()
+{
+  PrintCumulativeLabelRow();
+  History_->PrintCumulative();
 }
 
 /*! \brief
@@ -207,7 +205,7 @@ double CalculateNextTotal(double InitialCapital, double InterestRate, double Yea
  */
 void PrintInvestmentLabelRow()
 {
-  printf("Year |   Total  | Growth | Interest | Contribution\n");
+  printf("Year  :   Total  || Growth   |  Interest | Contribution\n");
 }
 
 /*! \brief

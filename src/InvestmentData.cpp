@@ -90,8 +90,18 @@ void InvestmentData::PrintContents()
   for(int i=0; i<CurrentIndex_; ++i)
   {
     YearlyData abrv = Portfolio_[i];
-    printf("%5i : %5.2f || %5.2f || %5.2f || %5.2f\n",StartYear_+i,abrv.AnnualTotal,abrv.AnnualInterestEarnings+abrv.AnnualContributions,abrv.AnnualInterestEarnings,abrv.AnnualContributions);
+    printf("%5i : %5.2f || %5.2f = %5.2f + %5.2f\n",StartYear_+i,abrv.AnnualTotal,abrv.AnnualInterestEarnings+abrv.AnnualContributions,abrv.AnnualInterestEarnings,abrv.AnnualContributions);
   }
 }
 
-
+void InvestmentData::PrintCumulative()
+{
+  double InterestTotal = 0;
+  double ContributionTotal = 0;
+  for(int i=0; i<CurrentIndex_; ++i)
+  {
+    InterestTotal += Portfolio_[i].AnnualInterestEarnings;
+    ContributionTotal += Portfolio_[i].AnnualContributions;
+  }
+  printf("%5.2f || %5.2f = %5.2f + %5.2f\n",Portfolio_[CurrentIndex_-1].AnnualTotal,InterestTotal+ContributionTotal, InterestTotal, ContributionTotal);
+}

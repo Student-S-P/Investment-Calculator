@@ -32,4 +32,5 @@ class InvestmentData
     void Append(double Total, double InterestEarnings, double Contributions);
     void Get(int StartIndex=0, int EndIndex=0);
     void PrintContents();
+    void PrintCumulative();
 };

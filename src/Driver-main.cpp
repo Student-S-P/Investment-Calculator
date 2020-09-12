@@ -19,6 +19,8 @@ void TestCalculator(double Capital, double Interest, double Contribution, double
 {
   InvestmentCalculator ic = InvestmentCalculator(Capital, Interest, Contribution);
   ic.PredictGrowth(Years);
+  ic.PrintHistory();
+  ic.PrintCumulativeHistory();
 }
 
 void TestData()
@@ -93,7 +95,7 @@ int main(int argc, char* argv[])
       return 1;
     }
     /* Check for text file */
-    else
+    else 
     {
     }
   }
@@ -120,5 +122,6 @@ int main(int argc, char* argv[])
   InvestmentCalculator ic = InvestmentCalculator(InitialMoney, Interest, Contribution);
   ic.PredictGrowth(Years);
   ic.PrintHistory();
+  ic.PrintCumulativeHistory();
 }
 
