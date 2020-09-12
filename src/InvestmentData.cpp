@@ -83,6 +83,11 @@ void InvestmentData::Resize()
   }
 }
 
+void PrintContentsLabelRow()
+{
+  printf("Year  :   Total  || Growth   |  Interest | Contribution\n");
+}
+
 /* Print all the arrays as a series of rows. NOTE: IT IGNORES EMPTY SPACES
  * AT THE END! */
 void InvestmentData::PrintContents()
@@ -92,6 +97,15 @@ void InvestmentData::PrintContents()
     YearlyData abrv = Portfolio_[i];
     printf("%5i : %5.2f || %5.2f = %5.2f + %5.2f\n",StartYear_+i,abrv.AnnualTotal,abrv.AnnualInterestEarnings+abrv.AnnualContributions,abrv.AnnualInterestEarnings,abrv.AnnualContributions);
   }
+}
+
+/*! \brief
+ *   This function prints the label row for the cumulative entry at the
+ *   bottom.
+ */
+void PrintCumulativeLabelRow()
+{
+  printf("   Total  | Growth | Interest | Contribution\n");
 }
 
 void InvestmentData::PrintCumulative()

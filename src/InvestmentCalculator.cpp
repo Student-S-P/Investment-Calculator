@@ -173,7 +173,7 @@ double InvestmentCalculator::GetYearlyContribution()
  */
 void InvestmentCalculator::PrintHistory()
 {
-  PrintInvestmentLabelRow();
+  PrintContentsLabelRow();
   History_->PrintContents();
 }
 
@@ -203,10 +203,6 @@ double CalculateNextTotal(double InitialCapital, double InterestRate, double Yea
 /*! \brief
  *   This function prints the label row at the top of the predictions.
  */
-void PrintInvestmentLabelRow()
-{
-  printf("Year  :   Total  || Growth   |  Interest | Contribution\n");
-}
 
 /*! \brief
  *   This function prints the information at each iteration of the
@@ -217,14 +213,6 @@ void PrintInvestmentInformation(int year, double Total, double InterestGrowth, d
   printf("%5i: %5.2f || %5.2f || %5.2f || %5.2f\n",year,Total,InterestGrowth+Contribution,InterestGrowth,Contribution);
 }
 
-/*! \brief
- *   This function prints the label row for the cumulative entry at the
- *   bottom.
- */
-void PrintCumulativeLabelRow()
-{
-  printf("   Total  | Growth | Interest | Contribution\n");
-}
 
 /* This function prints useful information in the console window */
 void PrintHelp()

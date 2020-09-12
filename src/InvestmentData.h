@@ -25,6 +25,7 @@ class InvestmentData
     int StartYear_ = 0; 
 
     void Resize();
+
   public:
     InvestmentData();
     InvestmentData(int StartYear);
@@ -34,3 +35,6 @@ class InvestmentData
     void PrintContents();
     void PrintCumulative();
 };
+
+void PrintContentsLabelRow();
+void PrintCumulativeLabelRow();
