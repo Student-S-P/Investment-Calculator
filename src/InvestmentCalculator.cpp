@@ -217,6 +217,6 @@ void PrintInvestmentInformation(int year, double Total, double InterestGrowth, d
 /* This function prints useful information in the console window */
 void PrintHelp()
 {
-  printf("You can use this executable two ways:\n  1. Enter nothing and it will try to pull information from Data.txt\n  2. Enter in four arguments (Initial capital, interest, yearly contribution, years to predict)\n");
+  printf("InvestmentCalculator can be used the following ways:\n  1. ./InvestmentPredictor.exe -> Enter only the program's name, and it tries to pull information from Input.json\n  2. ./InvestmentPredictor.exe [filename.json] -> Provide it with a json file and it will attempt to read it.\n  3. ./InvestmentPredictor.exe [InitialCapital] [Interest] [Yearly Contribution] [Years to predict] -> Enter in four arguments in the command line to perform the same calculations.\n");
 }
 

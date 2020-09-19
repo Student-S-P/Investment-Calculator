@@ -97,6 +97,19 @@ int main(int argc, char* argv[])
     /* Check for text file */
     else 
     {
+      //check for ".json" extension
+      std::string extension = arg1.substr(arg1.length() - 5);
+      if ( extension == ".json" )
+      {
+	Json::Value inputs;
+	std::ifstream input_file(arg1, std::ifstream::binary);
+	input_file >> inputs;
+
+	InitialMoney = inputs["Capital"].asDouble();
+	Interest = inputs["Interest"].asDouble();
+	Contribution = inputs["Contribution"].asDouble();
+	Years = inputs["Years"].asInt();
+      }
     }
   }
   //User gave only program name as an argument.
@@ -114,8 +127,9 @@ int main(int argc, char* argv[])
     Contribution = inputs["Contribution"].asDouble();
     Years = inputs["Years"].asInt();
   } 
-  else //Do nothing!
+  else //Recommend printing the help function.
   {
+    printf("Unrecognized inputs, try './InvestmentPredictor.exe help' for more info\n");
     return 1;
   }
 
