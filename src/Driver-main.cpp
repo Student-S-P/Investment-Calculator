@@ -35,6 +35,7 @@ void TestData()
   id.PrintContents();
 }
 
+/*Tests both the calculator and history object together */
 void TestHistory()
 {
   double InitialMoney = 16000.00;
